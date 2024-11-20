@@ -1,0 +1,91 @@
+@host = http://localhost:3000
+
+GET {{host}}/api/products
+
+
+###
+
+//queremos todos los productos con el mismo departamento
+GET {{host}}/api/products/dpt/hogar
+
+###
+// queremos hacer un filtro por rango de precio
+
+GET {{host}}/api/products/price?min=100&max=120
+
+
+
+###
+//aqui le mando la creaccion de un producto
+POST {{host}}/api/products
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjcyMjhmNDNjMTNkYmMyMWM2YmZlNDViIiwidXNlcl9yb2xlIjoicmVndWxhciIsImlhdCI6MTczMDkwOTc1NiwiZXhwIjoxNzMwOTEwMDU2fQ.EG4oa-1sbstt5eJZfAlbSeo7kPWyTa58c32k_0eQ224
+
+{
+    "name":"Salero",
+    "description": "tiene sal",
+    "price": 3.5,
+    "department": "hogar",
+    "stock": 60,
+    "available": true
+}
+
+###
+// esto es para modificar un producto con su id 
+PUT {{host}}/api/products/671b89453c3445b535fd408d
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjcyMjhmNDNjMTNkYmMyMWM2YmZlNDViIiwidXNlcl9yb2xlIjoicmVndWxhciIsImlhdCI6MTczMDQwMTA3OCwiZXhwIjoxNzMwNDAxMzc4fQ.15E-P_u_HFEFBxUXQwlm1IyZmDMFfKLJ7FVLguUrwac
+
+{
+    "name": "Pantalones cortos azules"
+}
+
+### 
+
+DELETE {{host}}/api/products/67227a22c45d45243bcb89bb
+
+
+#######################
+#   API USERS   #
+// aqui vamos a registrar un usuario
+POST {{host}}/api/users/register
+Content-Type: application/json
+
+{
+    "username": "Mario",
+    "email": "mario@gmail.com",
+    "password": "12345"
+    
+}
+
+
+###
+// aqui vamos a logarnos
+POST {{host}}/api/users/login
+Content-Type: application/json
+
+{
+   
+    "email": "mario@gmail.com",
+    "password": "12345"
+    
+}
+
+
+######################
+
+PUT {{host}}/api/users/add-product
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjcyMjhmNDNjMTNkYmMyMWM2YmZlNDViIiwidXNlcl9yb2xlIjoicmVndWxhciIsImlhdCI6MTczMDQwMzYyNCwiZXhwIjoxNzMwNDAzOTI0fQ.Bfb0cnd3Lc2NuFAg8If9knFhHSQeedO8GR_jLqnToEI
+
+{
+    "product_id": "671b89453c3445b535fd408d"
+}
+
+
+###
+
+//queremos que nos devuelva todos los productos que tenemos en cart del usuario que se ha logado 
+
+GET {{host}}/api/users/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjcyMjhmNDNjMTNkYmMyMWM2YmZlNDViIiwidXNlcl9yb2xlIjoicmVndWxhciIsImlhdCI6MTczMDkxMzAzNSwiZXhwIjoxNzMwOTEzMzM1fQ.vNFjvG0MgbPovtBlsjZUNu4sceHM2yVXKkmQ_3wgaUM
